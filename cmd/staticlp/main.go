@@ -25,7 +25,7 @@ func siteRootFromFlag() string {
 func main() {
 	rootCmd := &cobra.Command{
 		Use:           "staticlp",
-		Short:         "staticLP — create and manage Hugo Netlify campaign landings",
+		Short:         "staticLP — create and manage Netlify Forms landing funnels in Hugo",
 		Long:          "Companion CLI for the staticLP Hugo module.\nRun with no arguments to open the TUI; use subcommands for scripts.",
 		SilenceErrors: true,
 		SilenceUsage:  true,

@@ -4,7 +4,7 @@ go 1.23.0
 
 toolchain go1.24.5
 
-// Hugo Modules: requires Hugo >= 0.146 (alinhado a temas como PaperMod).
+// Hugo Modules: requires Hugo >= 0.146 (same baseline as themes such as PaperMod).
 
 require (
 	github.com/charmbracelet/bubbletea v1.3.6

@@ -13,7 +13,7 @@ qr_meta_refresh_sec = 6
 thank_you_redirect_ms = 1000
 
 [paths]
-thank_you = "/__LANG__/__SLUG__/obrigado/"
+thank_you = "/__LANG__/__SLUG__/thank-you/"
 material = "/__LANG__/__SLUG__/material/"
 landing = "/__LANG__/__SLUG__/"
 

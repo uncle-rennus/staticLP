@@ -92,8 +92,8 @@ campaign: ` + campaignID
 	if err := WriteFileUTF8(filepath.Join(sectionDir, "_index.md"), indexMd, 0o644); err != nil {
 		return err
 	}
-	obrigadoMd := "---\ntitle: \"Thank you\"\nslug: obrigado\n" + commonFM + "\n---\n"
-	if err := WriteFileUTF8(filepath.Join(sectionDir, "obrigado.md"), obrigadoMd, 0o644); err != nil {
+	thanksMd := "---\ntitle: \"Thank you\"\nslug: thank-you\n" + commonFM + "\n---\n"
+	if err := WriteFileUTF8(filepath.Join(sectionDir, "thank-you.md"), thanksMd, 0o644); err != nil {
 		return err
 	}
 	materialMd := "---\ntitle: \"Material\"\nslug: material\n" + commonFM + "\n---\n"

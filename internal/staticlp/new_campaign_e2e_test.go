@@ -72,7 +72,7 @@ func TestNewCampaign_WritesAllSections(t *testing.T) {
 		t.Fatalf("photo: %q", c.Presenter.Photo)
 	}
 
-	for _, name := range []string{"_index.md", "obrigado.md", "material.md", "qr.md"} {
+	for _, name := range []string{"_index.md", "thank-you.md", "material.md", "qr.md"} {
 		p := filepath.Join(root, "content", "e2e-slug", name)
 		b, err := os.ReadFile(p)
 		if err != nil {

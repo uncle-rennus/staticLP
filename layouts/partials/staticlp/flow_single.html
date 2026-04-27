@@ -40,7 +40,7 @@
   <p class="staticlp-thanks-text" style="margin-top:1rem;text-align:center"><a href="{{ $landingPath }}">Continue</a></p>
 </noscript>
 
-{{- else if eq .Slug "obrigado" -}}
+{{- else if or (eq .Slug "thank-you") (eq .Slug "obrigado") -}}
 <section class="staticlp" aria-labelledby="campaign-thanks-title">
   <div class="staticlp-card">
     <h1 class="staticlp-thanks-title" id="campaign-thanks-title">{{ .Title }}</h1>

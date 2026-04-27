@@ -22,7 +22,7 @@ func BuildMainMenuForm(siteRoot string, action *string) *huh.Form {
 		huh.NewGroup(
 			huh.NewSelect[string]().
 				Title("staticLP").
-				Description("Hugo Netlify campaign landings at "+siteRoot).
+				Description("staticLP landing funnels at "+siteRoot).
 				Height(8).
 				Value(action).
 				Options(
@@ -54,7 +54,7 @@ func BuildNewCampaignWizardForm(fields *NewCampaignFormFields) *huh.Form {
 			Description("Tab / Shift+Tab: move fields. Enter: next field. After the last field here, the next step opens."),
 
 		huh.NewGroup(
-			huh.NewInput().Title("Google Drive file_id (PDF)").Description("Empty = keep TOML placeholder (SUBSTITUA…).").Value(&fields.FileID),
+			huh.NewInput().Title("Google Drive file_id (PDF)").Description("Empty = keep TOML placeholder REPLACE_WITH_FILE_ID.").Value(&fields.FileID),
 			huh.NewText().Title("Consent text (GDPR)").Value(&fields.ConsentText).Lines(4),
 			huh.NewInput().Title("Submit button label").Value(&fields.SubmitLabel),
 		).Title("New campaign 2/4 — Form & PDF").

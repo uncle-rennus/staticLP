@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Creates data/campaigns/<id>.toml and content/<lang>/<slug>/ (landing, obrigado, material, qr).
+  Creates data/campaigns/<id>.toml and content/<lang>/<slug>/ (landing, thank-you, material, qr).
   Run from the Hugo site root (or pass -RepoRoot).
 
 .EXAMPLE
@@ -69,14 +69,14 @@ $common
 "@
 Write-Utf8NoBom -LiteralPath (Join-Path $contentDir "_index.md") -Value $indexMd
 
-$obrigadoMd = @"
+$thanksMd = @"
 ---
 title: "Thank you"
-slug: obrigado
+slug: thank-you
 $common
 ---
 "@
-Write-Utf8NoBom -LiteralPath (Join-Path $contentDir "obrigado.md") -Value $obrigadoMd
+Write-Utf8NoBom -LiteralPath (Join-Path $contentDir "thank-you.md") -Value $thanksMd
 
 $materialMd = @"
 ---

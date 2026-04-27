@@ -8,7 +8,7 @@ qr_meta_refresh_sec = 6
 thank_you_redirect_ms = 1000
 
 [paths]
-thank_you = "/demo-event/obrigado/"
+thank_you = "/demo-event/thank-you/"
 material = "/demo-event/material/"
 landing = "/demo-event/"
 

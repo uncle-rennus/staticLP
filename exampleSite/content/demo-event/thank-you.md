@@ -1,5 +1,5 @@
 ---
 title: "Thank you"
-slug: obrigado
+slug: thank-you
 campaign: demo
 ---

@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.1
+
+- All user-facing scaffold and CLI copy in English; TOML placeholder `REPLACE_WITH_FILE_ID` everywhere; TUI hint text updated.
+- Default thank-you URL segment and content file: `thank-you` / `thank-you.md` (`paths.thank_you` in scaffold). `flow_single.html` still accepts legacy slug `obrigado`.
+
 ## v1.0.0
 
 - **Module rename** to `github.com/uncle-rennus/staticlp` (import path for `go get` / `hugo mod get`).

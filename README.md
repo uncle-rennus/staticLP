@@ -1,6 +1,6 @@
 # staticLP
 
-Hugo module and companion CLI for **static landing funnels** that use [**Netlify Forms**](https://docs.netlify.com/forms/setup/). The HTML form is emitted at **build time** (required for Netlify to detect it). Typical flow: **landing** → **thank-you** (`obrigado` slug) → **material** (e.g. embedded Google Drive PDF), with an optional **QR** hop page.
+Hugo module and companion CLI for **static landing funnels** that use [**Netlify Forms**](https://docs.netlify.com/forms/setup/). The HTML form is emitted at **build time** (required for Netlify to detect it). Typical flow: **landing** → **thank-you** (slug `thank-you`; legacy `obrigado` is still supported in `flow_single.html`) → **material** (e.g. embedded Google Drive PDF), with an optional **QR** hop page.
 
 **Requirements**
 
@@ -24,7 +24,7 @@ path = "github.com/uncle-rennus/staticlp"
 Then:
 
 ```bash
-hugo mod get github.com/uncle-rennus/staticlp@v1.0.0
+hugo mod get github.com/uncle-rennus/staticlp@v1.0.1
 hugo mod tidy
 ```
 
@@ -63,7 +63,7 @@ Styles live in `assets/css/staticlp.css` inside the module; the partial fingerpr
 From the **Hugo site root** (directory containing `hugo.toml` / `config.*`):
 
 ```bash
-go install github.com/uncle-rennus/staticlp/cmd/staticlp@v1.0.0
+go install github.com/uncle-rennus/staticlp/cmd/staticlp@v1.0.1
 staticlp              # TUI: list / new / edit / remove
 staticlp new --slug my-campaign --lang en
 staticlp list
@@ -71,7 +71,7 @@ staticlp edit my-campaign
 staticlp rm my-campaign
 ```
 
-The CLI scaffolds `data/campaigns/<id>.toml` and `content/<lang>/<slug>/` (`_index.md`, `obrigado.md`, `material.md`, `qr.md`) as **UTF-8 without BOM**.
+The CLI scaffolds `data/campaigns/<id>.toml` and `content/<lang>/<slug>/` (`_index.md`, `thank-you.md`, `material.md`, `qr.md`) as **UTF-8 without BOM**.
 
 Optional: **`scripts/New-NetlifyCampaign.ps1`** mirrors the same scaffold for PowerShell users.
 
