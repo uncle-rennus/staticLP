@@ -1,0 +1,37 @@
+{{- /* Campaign landing (Netlify Form + optional presenter). Context: section page (.). */ -}}
+{{- $key := .Param "campaign" -}}
+{{- if not $key }}{{- errorf "staticlp/landing: set front matter campaign (page %s)" .Path -}}{{- end -}}
+{{- $c := index site.Data.campaigns $key -}}
+{{- if not $c }}{{- errorf "staticlp/landing: site.Data.campaigns.%s not found" $key -}}{{- end -}}
+<section class="staticlp staticlp--landing" aria-labelledby="campaign-landing-title">
+  <div class="staticlp-card staticlp-card--landing">
+    {{- with $c.presenter -}}
+    {{- if .name -}}
+    <div class="staticlp-presenter">
+      {{- with .photo -}}
+      <img class="staticlp-presenter-photo" src="{{ . | relURL }}" alt="Photo of {{ $c.presenter.name }}" width="112" height="112" loading="lazy" decoding="async">
+      {{- end -}}
+      <div class="staticlp-presenter-body">
+        <p class="staticlp-presenter-name">{{ $c.presenter.name }}</p>
+        {{- with $c.presenter.headline -}}
+        <p class="staticlp-presenter-headline">{{ . }}</p>
+        {{- end -}}
+        {{- with $c.presenter.bio -}}
+        <p class="staticlp-presenter-bio">{{ . }}</p>
+        {{- end -}}
+        {{- with $c.presenter.linkedin_url -}}
+        <a class="staticlp-presenter-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">View LinkedIn profile</a>
+        {{- end -}}
+      </div>
+    </div>
+    {{- end -}}
+    {{- end -}}
+    <h1 class="staticlp-headline" id="campaign-landing-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="staticlp-subhead">{{ . }}</p>
+    {{- end }}
+    <div class="staticlp-form-wrap">
+      {{- partial "staticlp/form.html" (dict "Page" . "Campaign" $c) }}
+    </div>
+  </div>
+</section>

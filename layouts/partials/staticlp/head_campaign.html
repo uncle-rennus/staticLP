@@ -1,0 +1,13 @@
+{{- /* Funnel CSS + QR meta (noindex + refresh). Include from theme <head> (e.g. extend_head). */ -}}
+{{- if .Param "campaign" -}}
+{{- $css := resources.Get "css/staticlp.css" | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+{{- end -}}
+{{- if and (.Param "campaign") (eq .Slug "qr") -}}
+{{- $ck := .Param "campaign" -}}
+{{- $cd := index site.Data.campaigns $ck -}}
+{{- $land := $cd.paths.landing -}}
+{{- $sec := $cd.qr_meta_refresh_sec | default 6 -}}
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="refresh" content="{{ $sec }};url={{ $land }}">
+{{- end -}}

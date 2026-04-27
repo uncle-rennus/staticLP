@@ -1,0 +1,339 @@
+/* staticLP — Netlify Forms funnel styles. Fingerprint via Hugo resources.Get on the consuming site. */
+
+/* Landing funnel — mobile-first, contrast, visible focus */
+
+/* Netlify honeypot: hide with CSS per Netlify docs, not only the hidden attribute */
+.staticlp-honey {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.staticlp {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+.staticlp-card {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Landing: centered title, subtitle, form column */
+.staticlp-card--landing {
+  text-align: center;
+}
+
+.staticlp-card--landing .staticlp-headline {
+  margin-top: 1.15rem;
+}
+
+.staticlp-form-wrap {
+  margin-top: 0.25rem;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.staticlp-headline {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.staticlp-subhead {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--secondary);
+}
+
+.staticlp-presenter {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 0 0 1.5rem;
+  padding: 1rem 0 1.25rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.staticlp--landing .staticlp-presenter {
+  justify-content: center;
+  align-items: center;
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.staticlp--landing .staticlp-presenter-body {
+  text-align: left;
+}
+
+.staticlp-presenter-photo {
+  flex-shrink: 0;
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--theme);
+}
+
+.staticlp-presenter-body {
+  min-width: 0;
+}
+
+.staticlp-presenter-name {
+  margin: 0 0 0.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.staticlp-presenter-headline {
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.staticlp-presenter-bio {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--secondary);
+}
+
+.staticlp-presenter-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.staticlp-presenter-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .staticlp-presenter {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .staticlp-presenter-body {
+    text-align: center;
+  }
+  .staticlp--landing .staticlp-presenter-body {
+    text-align: center;
+  }
+}
+
+.staticlp-field {
+  margin-bottom: 1rem;
+}
+
+.staticlp-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.staticlp-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 0.9rem;
+  font-size: 1rem;
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--theme);
+  color: var(--primary);
+}
+
+.staticlp-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.25);
+}
+
+body.dark .staticlp-input:focus {
+  box-shadow: 0 0 0 3px rgba(139, 148, 255, 0.35);
+}
+
+.staticlp-input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.staticlp-consent {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--secondary);
+  margin: 0 0 1.25rem;
+}
+
+.staticlp-submit {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.85rem 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--primary);
+  color: var(--theme);
+}
+
+.staticlp-submit:hover {
+  filter: brightness(1.06);
+}
+
+.staticlp-submit:focus {
+  outline: none;
+}
+
+.staticlp-submit:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.staticlp-thanks-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.staticlp-thanks-text {
+  margin: 0 0 0.5rem;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.staticlp-thanks-actions {
+  margin-top: 1.5rem;
+}
+
+.staticlp-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--theme);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.staticlp-link-btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.staticlp-material-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  color: var(--primary);
+}
+
+.staticlp-material-intro {
+  margin: 0 0 1rem;
+  color: var(--secondary);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Material page: wider than the form column for PDF embed */
+.staticlp.staticlp--material {
+  max-width: min(100%, 75rem);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.staticlp-pdf-shell {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--theme);
+}
+
+.staticlp-pdf-object,
+.staticlp-pdf-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 900px) {
+  .staticlp.staticlp--material .staticlp-pdf-shell {
+    min-height: min(85vh, 56rem);
+  }
+}
+
+.staticlp-fallback {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--entry);
+}
+
+.staticlp-fallback p {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.staticlp-fallback a {
+  font-weight: 600;
+  color: var(--primary);
+  word-break: break-word;
+}
+
+.staticlp-fallback a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .staticlp {
+    padding-top: 2rem;
+  }
+  .staticlp-headline {
+    font-size: 1.65rem;
+  }
+  .staticlp-material-title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,6 @@
+{{- /* Suffix for <body> class, e.g. class="list dark{{ partial "staticlp/body_extra_class.html" . }}" */ -}}
+{{- with .Param "campaign" -}}
+{{- with index site.Data.campaigns . -}}
+{{- with .analytics.body_class }} {{ . }}{{ end -}}
+{{- end -}}
+{{- end -}}

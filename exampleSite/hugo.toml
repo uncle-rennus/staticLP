@@ -1,0 +1,9 @@
+baseURL = "http://localhost:1313/"
+title = "staticLP demo"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+disableKinds = ["taxonomy", "term"]
+
+[module]
+[[module.imports]]
+path = "github.com/uncle-rennus/staticlp"

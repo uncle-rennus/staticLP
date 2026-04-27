@@ -1,0 +1,124 @@
+{{- /* QR hop / thank-you / material flow. Context: single page (.). */ -}}
+{{- $key := .Param "campaign" -}}
+{{- if not $key }}{{- errorf "staticlp/flow_single: set front matter campaign (page %s)" .Path -}}{{- end -}}
+{{- $c := index site.Data.campaigns $key -}}
+{{- if not $c }}{{- errorf "staticlp/flow_single: site.Data.campaigns.%s not found" $key -}}{{- end -}}
+{{- $materialPath := $c.paths.material -}}
+{{- $landingPath := $c.paths.landing -}}
+{{- $qrDelay := $c.qr_delay_ms | default 1400 -}}
+{{- $thanksDelay := $c.thank_you_redirect_ms | default 1000 -}}
+{{- $pdfShellID := printf "%s-pdf-shell" $c.id -}}
+
+{{- if eq .Slug "qr" -}}
+<section class="staticlp" aria-labelledby="campaign-qr-title">
+  <div class="staticlp-card">
+    <h1 class="staticlp-thanks-title" id="campaign-qr-title">{{ .Title }}</h1>
+    <p class="staticlp-thanks-text">Taking you to the landing page…</p>
+    <p class="staticlp-thanks-text">If nothing happens, use the link below.</p>
+    <div class="staticlp-thanks-actions">
+      <a class="staticlp-link-btn" href="{{ $landingPath }}">Go to landing page</a>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var dest = "{{ $landingPath }}";
+  var delay = {{ $qrDelay }};
+  function go() {
+    window.location.replace(dest);
+  }
+  if (document.readyState === "complete") {
+    window.setTimeout(go, delay);
+  } else {
+    window.addEventListener("load", function () {
+      window.setTimeout(go, delay);
+    });
+  }
+})();
+</script>
+<noscript>
+  <p class="staticlp-thanks-text" style="margin-top:1rem;text-align:center"><a href="{{ $landingPath }}">Continue</a></p>
+</noscript>
+
+{{- else if eq .Slug "obrigado" -}}
+<section class="staticlp" aria-labelledby="campaign-thanks-title">
+  <div class="staticlp-card">
+    <h1 class="staticlp-thanks-title" id="campaign-thanks-title">{{ .Title }}</h1>
+    <p class="staticlp-thanks-text">Your access is being unlocked.</p>
+    <p class="staticlp-thanks-text">If the redirect does not happen, click the button below.</p>
+    <div class="staticlp-thanks-actions">
+      <a class="staticlp-link-btn" href="{{ $materialPath }}">Open material now</a>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var dest = "{{ $materialPath }}";
+  window.setTimeout(function () {
+    window.location.replace(dest);
+  }, {{ $thanksDelay }});
+})();
+</script>
+<noscript>
+  <div class="staticlp" style="margin-top:1rem">
+    <p class="staticlp-thanks-text">Enable JavaScript or use the button above to open the material.</p>
+  </div>
+</noscript>
+
+{{- else if eq .Slug "material" -}}
+{{- if and $c.delivery (eq $c.delivery.type "google_drive_pdf") -}}
+{{- $fid := $c.delivery.file_id -}}
+{{- $preview := $c.delivery.preview_url | default (printf "https://drive.google.com/file/d/%s/preview" $fid) -}}
+{{- $direct := $c.delivery.direct_url | default (printf "https://drive.google.com/uc?export=download&id=%s" $fid) -}}
+<section class="staticlp staticlp--material" aria-labelledby="campaign-material-title">
+  <h1 class="staticlp-material-title" id="campaign-material-title">{{ .Title }}</h1>
+  <p class="staticlp-material-intro">The PDF should appear below. If it does not, use the direct link.</p>
+  <div class="staticlp-pdf-shell" id="{{ $pdfShellID }}">
+    <object
+      class="staticlp-pdf-object"
+      data="{{ $preview }}"
+      type="application/pdf"
+      aria-label="PDF preview"
+    >
+      <iframe
+        class="staticlp-pdf-frame"
+        src="{{ $preview }}"
+        title="PDF preview"
+        loading="lazy"
+      ></iframe>
+    </object>
+  </div>
+  <div class="staticlp-fallback">
+    <p>If the PDF does not open on this page, open or download it from Google Drive.</p>
+    <p><a href="{{ $direct }}" rel="noopener noreferrer">Open material in Google Drive</a></p>
+  </div>
+</section>
+<script>
+(function () {
+  var shell = document.getElementById("{{ $pdfShellID }}");
+  if (!shell) return;
+  window.setTimeout(function () {
+    try {
+      var obj = shell.querySelector("object");
+      if (obj && (!obj.contentDocument || obj.contentDocument.body.children.length === 0)) {
+        shell.setAttribute("data-campaign-embed", "unknown");
+      }
+    } catch (e) {
+      shell.setAttribute("data-campaign-embed", "blocked");
+    }
+  }, 2500);
+})();
+</script>
+{{- else -}}
+<article class="post-single">
+  <header class="post-header"><h1 class="post-title">{{ .Title }}</h1></header>
+  <div class="post-content">{{ .Content }}</div>
+</article>
+{{- end -}}
+
+{{- else -}}
+<article class="post-single">
+  <header class="post-header"><h1 class="post-title">{{ .Title }}</h1></header>
+  <div class="post-content">{{ .Content }}</div>
+</article>
+{{- end -}}

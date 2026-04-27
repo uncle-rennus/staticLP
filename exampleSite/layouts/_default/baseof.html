@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+  {{- partial "staticlp/head_campaign.html" . -}}
+  <style>
+    :root { --theme: #1a1a1e; --entry: #252530; --primary: #e8e8ec; --secondary: #9898a8; --border: #3d3d4a; }
+    body { font-family: system-ui, sans-serif; background: var(--theme); color: var(--primary); margin: 0; padding: 1rem; }
+    main { max-width: 50rem; margin: 0 auto; }
+  </style>
+</head>
+<body class="demo{{- partial "staticlp/body_extra_class.html" . -}}"
+{{- with .Param "campaign" -}}{{- with index site.Data.campaigns . -}}{{- with .analytics.campaign }} data-analytics-campaign="{{ . }}"{{ end }}{{ end }}{{ end }} id="top">
+  <main id="main-content">
+    {{- block "main" . }}{{ end }}
+  </main>
+</body>
+</html>

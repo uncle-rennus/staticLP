@@ -1,0 +1,33 @@
+{{- /* Netlify Forms: HTML must be static at build time; do not render this form only via JS.
+     Args: dict "Page" . "Campaign" $campaign (site.Data.campaigns.<id>)
+*/ -}}
+{{- $p := .Page -}}
+{{- $c := .Campaign -}}
+{{- if not $c }}{{- errorf "staticlp/form: missing Campaign (page %s)" $p.Path -}}{{- end -}}
+{{- $name := $c.form_name -}}
+{{- $action := $c.paths.thank_you -}}
+{{- $hp := $c.honeypot_field | default "bot-field" -}}
+{{- $consentID := printf "%s-consent" $c.id -}}
+<form name="{{ $name }}" method="POST" netlify data-netlify="true" netlify-honeypot="{{ $hp }}" action="{{ $action }}" enctype="application/x-www-form-urlencoded" aria-describedby="{{ $consentID }}">
+  {{- /* form-name is injected at deploy by Netlify; do not duplicate here. */ -}}
+  <p class="staticlp-honey">
+    <label>Do not fill this in: <input name="{{ $hp }}" type="text" autocomplete="off" tabindex="-1"></label>
+  </p>
+  {{- range $c.fields }}
+  {{- $fid := printf "%s-%s" $c.id .name }}
+  <div class="staticlp-field">
+    <label class="staticlp-label" for="{{ $fid }}">{{ .label }}</label>
+    <input
+      class="staticlp-input"
+      id="{{ $fid }}"
+      name="{{ .name }}"
+      type="{{ .type }}"
+      {{- with .autocomplete }} autocomplete="{{ . }}"{{- end -}}
+      {{- with .inputmode }} inputmode="{{ . }}"{{- end -}}
+      {{- if .required }} required{{ end }}
+    >
+  </div>
+  {{- end }}
+  <p class="staticlp-consent" id="{{ $consentID }}">{{ $c.consent_text }}</p>
+  <button class="staticlp-submit" type="submit">{{ $c.submit_label }}</button>
+</form>
