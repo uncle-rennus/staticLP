@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2
+
+- README: expanded usage for **Netlify** (deploy, Forms, redirects, local preview) and **non-Netlify** hosts (override `form.html`, other POST backends). Document URL/`paths` rules and short-link pitfalls.
+
 ## v1.0.1
 
 - All user-facing scaffold and CLI copy in English; TOML placeholder `REPLACE_WITH_FILE_ID` everywhere; TUI hint text updated.
